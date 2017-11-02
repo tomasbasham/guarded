@@ -1,0 +1,17 @@
+version: "3"
+services:
+  postgres:
+    image: postgres:9.4.10-alpine
+    volumes:
+      - postgres:/var/lib/postgresql/data
+
+  web:
+    build: .
+    links:
+      - postgres
+    volumes:
+      - assets:/usr/src/app/public
+
+volumes:
+  postgres:
+  assets:
